@@ -1,12 +1,12 @@
-import { router } from "#src/modules/routes.js";
+import { router } from "#src/modules/routes";
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import http from "http";
 import morgan from "morgan";
 import { Server } from "socket.io";
-import { configs } from "./initializers/config.js";
 import { initialize } from "./initializers/index.js";
+import { configs } from "./lib/config.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 import {
   nullResponseMiddleware,

@@ -1,10 +1,9 @@
 import { API_STATUS } from "#src/utils/enums";
-import { traverseAndModifyData } from "#src/utils/utils";
 import { NextFunction, Request, Response } from "express";
 
 export const responseMiddleware = (
   data: any,
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -16,13 +15,11 @@ export const responseMiddleware = (
   ) {
     return next(data);
   }
-  data = JSON.parse(JSON.stringify(data));
-
-  traverseAndModifyData(data, req.headers["locale"]?.toString() || "en");
 
   return res.json({
     status: API_STATUS.OK,
-    data,
+    message: data?.message || "Success",
+    data: { ...data, message: undefined },
   });
 };
 
@@ -31,8 +28,9 @@ export const nullResponseMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  return res.status(404).json({
+  return res.status(403).json({
     status: API_STATUS.ERROR,
+
     data: null,
   });
 };

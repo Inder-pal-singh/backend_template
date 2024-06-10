@@ -5,9 +5,7 @@ let instance: Configs | null = null;
 
 class Configs {
   config = {
-    AWS_CLIENT_ID: "",
-    AWS_CLIENT_SECRET: "",
-    AWS_USER_POOL_ID: "",
+    CLIENT_URL: "",
     AWS_REGION: "",
     AWS_ACCESS_KEY_ID: "",
     AWS_SECRET_ACCESS_KEY: "",
@@ -29,15 +27,10 @@ class Configs {
   }
 
   initialize() {
-    if (!process.env.AWS_CLIENT_ID) {
-      throw new Error("AWS_CLIENT_ID is not set");
+    if (!process.env.CLIENT_URL) {
+      throw new Error("CLIENT_URL is not set");
     }
-    if (!process.env.AWS_CLIENT_SECRET) {
-      throw new Error("AWS_CLIENT_SECRET is not set");
-    }
-    if (!process.env.AWS_USER_POOL_ID) {
-      throw new Error("AWS_USER_POOL_ID is not set");
-    }
+
     if (!process.env.AWS_REGION) {
       throw new Error("AWS_REGION is not set");
     }
@@ -70,9 +63,7 @@ class Configs {
     }
 
     return {
-      AWS_CLIENT_ID: process.env.AWS_CLIENT_ID,
-      AWS_CLIENT_SECRET: process.env.AWS_CLIENT_SECRET,
-      AWS_USER_POOL_ID: process.env.AWS_USER_POOL_ID,
+      CLIENT_URL: process.env.CLIENT_URL,
       AWS_REGION: process.env.AWS_REGION,
       AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
       AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,

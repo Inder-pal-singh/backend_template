@@ -12,43 +12,14 @@ export const authMiddleware =
     }
     try {
       const decoded = verifyToken(token!) as any;
+      console.log(decoded);
+
       const user = await fetchUser(decoded.id);
       console.info("Req by user: ", user?.email);
 
       if (!user && strict) {
         return next({ name: "UnauthorizedError", error: "Invalid token" });
       }
-      req.user = user;
-      return next();
-    } catch (error) {
-      console.log(error);
-      return next({ name: "UnauthorizedError", error: error });
-    }
-  };
-
-export const epAuthMiddleware =
-  (strict = false, tryQuery = false) =>
-  async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
-      return next({ name: "UnauthorizedError", error: "No token provided" });
-    }
-    try {
-      const decoded = verifyToken(token!) as any;
-      const user = await fetchUser(decoded.id);
-      console.log("Req by user: ", user?.email);
-
-      if (!user && strict) {
-        return next({ name: "UnauthorizedError", error: "Invalid token" });
-      }
-
-      if (user?.role !== "employer") {
-        return next({
-          name: "UnauthorizedError",
-          error: "You are not authorized to access this resource",
-        });
-      }
-
       req.user = user;
       return next();
     } catch (error) {
