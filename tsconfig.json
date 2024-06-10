@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+      // add Bun type definitions
+      "types": [],
+  
+      // enable latest features
+      "lib": ["esnext"],
+      "module": "esnext",
+      "target": "esnext",
+  
+      // if TS 5.x+
+      "moduleResolution": "Node",
+      "moduleDetection": "force",
+  
+      "allowJs": true, // allow importing `.js` from `.ts`
+      "esModuleInterop": true, // allow default imports for CommonJS modules
+      "resolveJsonModule": true, // allow importing `.json`
+  
+      // best practices
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true,
+  
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "paths": {
+        "#src/*": ["src/*"]
+      },
+    }
+  }
+  
