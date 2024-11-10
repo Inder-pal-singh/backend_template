@@ -1,4 +1,4 @@
-import { configs } from "#src/lib/config";
+import { configs } from "#src/initializers/config";
 import OTP, { IOTP } from "#src/modules/auth/otp.model";
 import User, { IUser } from "#src/modules/user/user.model";
 import jwt from "jsonwebtoken";
@@ -86,8 +86,7 @@ export default class AuthService {
 
   static async fetchUserById(id: string): Promise<IUser | null> {
     try {
-      return await User.findById(new Types.ObjectId(id))
-      .lean();
+      return await User.findById(new Types.ObjectId(id)).lean();
     } catch (error) {
       return null;
     }
