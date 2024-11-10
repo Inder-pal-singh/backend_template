@@ -1,4 +1,4 @@
-import { configs } from "#src/lib/config";
+import { configs } from "#src/initializers/config";
 import User, { IUser } from "#src/modules/user/user.model";
 import jwt from "jsonwebtoken";
 import { Types } from "mongoose";

@@ -1,3 +1,6 @@
+import { configs } from "#src/initializers/config";
+import { initialize } from "#src/initializers/index";
+import { errorHandler } from "#src/middlewares/error.middleware";
 import { router } from "#src/modules/routes";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -5,9 +8,6 @@ import express from "express";
 import http from "http";
 import morgan from "morgan";
 import { Server } from "socket.io";
-import { initialize } from "./initializers/index.js";
-import { configs } from "./lib/config.js";
-import { errorHandler } from "./middlewares/error.middleware.js";
 import {
   nullResponseMiddleware,
   responseMiddleware,

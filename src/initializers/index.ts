@@ -1,5 +1,5 @@
 // import { configAWS } from "./aws.js";
-import { mongoConnect } from "./mongo.js";
+import { mongoConnect } from "#src/initializers/mongo";
 
 export const initialize = async () => {
   try {

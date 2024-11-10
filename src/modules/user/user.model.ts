@@ -30,7 +30,7 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
-userSchema.plugin(mongooseAutoPopulate);
+userSchema.plugin(mongooseAutoPopulate as any);
 
 const User = mongoose.model<IUser>("User", userSchema);
 export default User;
