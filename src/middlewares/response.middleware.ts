@@ -1,8 +1,8 @@
-import { traverseAndModifyData } from "#src/modules/content/content.services";
+import { traverseAndModifyDataWithSignedUrls } from "#src/modules/content/content.services";
 import { API_STATUS } from "#src/utils/enums";
 import { NextFunction, Request, Response } from "express";
 
-export const responseMiddleware = (
+export const responseMiddleware = async (
   data: any,
   req: Request,
   res: Response,
@@ -23,7 +23,11 @@ export const responseMiddleware = (
 
   data = JSON.parse(JSON.stringify(data));
 
-  traverseAndModifyData(data, req.headers["lang"]?.toString() || "en");
+  await traverseAndModifyDataWithSignedUrls(
+    data,
+    req.headers["lang"]?.toString() || "en"
+  );
+  console.log(data);
 
   return res.json({
     status: API_STATUS.OK,
