@@ -29,6 +29,8 @@ router.get(
   AuthController.getProfile
 );
 
+router.post("/logout", authMiddleware(true), AuthController.logout);
+
 /**
  * Router for handling authentication routes.
  * @module authRouter

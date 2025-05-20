@@ -37,4 +37,12 @@ export class AuthController {
       next(error);
     }
   }
+  static async logout(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await AuthService.logout(req.user._id);
+      next(data);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

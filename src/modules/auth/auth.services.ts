@@ -123,4 +123,16 @@ export default class AuthService {
     const otpDoc = await OTP.create({ user: userId, otp });
     return otpDoc;
   }
+  static async logout(user: string) {
+    const _user = await User.findById(new Types.ObjectId(user));
+    if (!_user) {
+      throw { name: "UnauthorizedError", error: "User not found" };
+    }
+    _user!.notificationToken = null;
+    _user!.deviceToken = null;
+    await _user!.save();
+    return {
+      message: "Logout successful",
+    };
+  }
 }

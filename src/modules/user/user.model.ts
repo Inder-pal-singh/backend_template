@@ -11,6 +11,8 @@ export interface IUser extends Document {
   referredBy: string;
   lastLogin?: Date;
   isOnboarded: boolean;
+  notificationToken: string | null;
+  deviceToken: string | null;
   isActive: boolean;
   lastActive: Date;
 }
@@ -24,6 +26,8 @@ const userSchema = new Schema<IUser>(
     referredBy: { type: String },
     lastLogin: { type: Date },
     isOnboarded: { type: Boolean, default: false },
+    notificationToken: { type: String, default: null },
+    deviceToken: { type: String, default: null },
     isActive: { type: Boolean, default: true },
     lastActive: { type: Date, default: null },
   },
