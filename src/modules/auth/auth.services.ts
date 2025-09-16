@@ -13,8 +13,6 @@ export default class AuthService {
       throw { name: "UnauthorizedError", error: "Invalid email" };
     }
 
-    console.log(user);
-
     const otpDoc = await this.createOTP({ userId: user._id });
     console.log(otpDoc);
     return {
@@ -37,7 +35,6 @@ export default class AuthService {
     });
 
     const otpDoc = await this.createOTP({ userId: newUser.id });
-    console.log(otpDoc);
 
     return {
       message: "OTP sent to your email",
@@ -58,10 +55,8 @@ export default class AuthService {
     if (!otpDoc) {
       throw { name: "UnauthorizedError", error: "OTP Expired " };
     }
-    console.log(otpDoc.user);
 
     const user = await this.fetchUserById(otpDoc.user.toString());
-    console.log(user);
 
     if (!user) {
       throw { name: "UnauthorizedError", error: "User not found" };

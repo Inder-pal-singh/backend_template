@@ -1,4 +1,4 @@
-import { configs } from "#src/initializers/config.js";
+import { configs } from "#src/initializers/config";
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
@@ -10,14 +10,14 @@ export const uploadFileToS3 = async (
 ) => {
   const parallelUploads3 = new Upload({
     client: new S3Client({
-      region: configs.BUCKET_REGION,
+      region: configs.AWS_BUCKET_REGION,
       credentials: {
         accessKeyId: configs.AWS_ACCESS_KEY_ID,
         secretAccessKey: configs.AWS_SECRET_ACCESS_KEY,
       },
     }),
     params: {
-      Bucket: configs.BUCKET_NAME,
+      Bucket: configs.AWS_BUCKET_NAME,
       Key: `${keyPrefix}/${baseName}`,
       Body: fileContent,
       ACL: "private",
@@ -52,7 +52,7 @@ export const generateDownloadUrl = async (
   objectKey = objectKey.replace(/^\//, "");
 
   const command = new GetObjectCommand({
-    Bucket: configs.BUCKET_NAME,
+    Bucket: configs.AWS_BUCKET_NAME,
     Key: objectKey,
   });
 

@@ -13,8 +13,6 @@ export default class UserService {
     id: string;
     data: Partial<IUser>;
   }) {
-    console.log(data);
-
     const user = await User.findOneAndUpdate(
       { _id: new Types.ObjectId(id) },
       data,

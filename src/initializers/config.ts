@@ -16,8 +16,8 @@ class Configs {
     SENDGRID_API_KEY: "",
     STRIPE_WEBHOOK_SECRET: "",
     STRIPE_SECRET_KEY: "",
-    BUCKET_REGION: "",
-    BUCKET_NAME: "",
+    AWS_BUCKET_REGION: "",
+    AWS_BUCKET_NAME: "",
   };
 
   constructor() {
@@ -54,10 +54,10 @@ class Configs {
     if (!process.env.OTP_SECRET) {
       throw new Error("OTP_SECRET is not set");
     }
-    if (!process.env.BUCKET_REGION) {
+    if (!process.env.AWS_BUCKET_REGION) {
       throw new Error("BUCKET_REGION is not set");
     }
-    if (!process.env.BUCKET_NAME) {
+    if (!process.env.AWS_BUCKET_NAME) {
       throw new Error("BUCKET_NAME is not set");
     }
 
@@ -84,8 +84,8 @@ class Configs {
       SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
       STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
       STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-      BUCKET_REGION: process.env.BUCKET_REGION,
-      BUCKET_NAME: process.env.BUCKET_NAME,
+      AWS_BUCKET_REGION: process.env.AWS_BUCKET_REGION,
+      AWS_BUCKET_NAME: process.env.AWS_BUCKET_NAME,
     };
   }
 }
